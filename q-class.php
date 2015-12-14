@@ -1,10 +1,10 @@
 <?php 
 /*
 * file: q-class.php
-* ide: easy questionaire class
+* idea: easy questionnaire class - for evaluations, surveys and similar.
 */
 
-/* format questions */ class questionaire {
+class questionnaire {
 
 	public $form = "<form action='#'>";
 	public $formEnd = "</form>";
@@ -60,7 +60,7 @@
 
 /* << USAGE SAMPLE >> */
 
-$how = new questionaire();
+$how = new questionnaire();
 
 include_once "header.php"; // html and bootstrap initiated
 
@@ -68,7 +68,7 @@ echo $how->form;
 
 $how->aQuestion("Arbejder du med WordPress?");
 
-$how->janej("frontend");
+	$how->janej("frontend");
 
 $how->aQuestion("I hvor høj grad arbejder du med disse fag:");
 
@@ -81,11 +81,11 @@ $how->aQuestion("FOSS CMS?");
 
 include_once "cmsList.php"; // the list of the most used FOSS CMSs
 
-foreach ($cmsList as $row){
-	$how->setMark($row); // loop out the option list
-}
+	foreach ($cmsList as $row){
+		$how->setMark($row); // loop out the option list
+	}
 
-$how->write("Andre");
+	$how->write("Andre");
 
 $how->aQuestion("Tak for dine svar. Gem dine svar ved at klikke på Gem.");
 
@@ -97,12 +97,12 @@ include_once "footer.php";
 
 $ip = $_SERVER['REMOTE_ADDR']; // user ip (may be random or arbitrary)
 
-
+/* ... whatever the form GETs ... */
 
 $svar = $_REQUEST;
-array_pop($svar); // remove the submitbutton
+array_pop($svar); // remove the submit button
 echo '<div class="alert alert-info" role="alert"><h3>Resultat</h3>Answers from: ' 
-	. $ip . '<br>'
+	. $ip . '<br><pre>'
 	. json_encode($svar) 
-	. '</div>';
+	. '</pre></div>';
 ?>
